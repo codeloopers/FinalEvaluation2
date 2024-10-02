@@ -1,0 +1,257 @@
+/* Style for the container */
+.container {
+    max-width: 100%;
+    margin-left: auto;  /* Center align the container */
+    margin-right: auto; /* Center align the container */
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+    display: flex;
+  flex-direction: column;
+}
+
+/* Style for the image container */
+.image-container {
+    display: flex;
+    flex-direction: row;  /* Align items horizontally */
+    overflow-x: auto;     /* Enable horizontal scroll */
+    gap: 20px;            /* Space between images */
+    padding: 10px 0;
+    justify-content: space-around;
+}
+
+/* Wrapper around each image for positioning the text */
+.image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Style for each image */
+.image {
+    width: 200px;    /* Fixed width */
+    height: 200px;   /* Fixed height */
+    object-fit: cover; /* Ensures image covers the entire box without distortion */
+    filter: blur(2px); /* Apply a subtle blur effect */
+    transition: filter 0.3s ease; /* Smooth transition */
+    border-radius: 35px;
+}
+
+/* Overlay for the text */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3); /* Dark background behind text */
+    border-radius: 35px;
+}
+
+.image-wrapper:hover .image {
+    filter: blur(1px); /* Very slight blur on hover */
+}
+
+/* Container with normal styling */
+.container {
+    transition: filter 0.3s ease; /* Smooth transition for blur effect */
+}
+  
+/* Apply blur effect when modal is open */
+.container.blurred {
+    filter: blur(5px); /* Adjust the blur level (e.g., 5px) */
+    pointer-events: none; /* Disable interaction with the blurred content */
+}
+
+/* Styling for the "Your Stories" section */
+.your-stories {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Styles for the stories container */
+.stories-container {
+    display: grid;
+    grid-template-columns: repeat(4, 250px); /* Fixed width for cards (adjust as needed) */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the grid horizontally */
+    margin: 20px 0;
+    padding: 0 10px; /* Optional: to add padding around the container */
+  }
+  
+  @media (max-width: 1200px) {
+    .stories-container {
+      grid-template-columns: repeat(3, 250px); /* 3 cards per row for medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .stories-container {
+      grid-template-columns: repeat(2, 250px); /* 2 cards per row for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .stories-container {
+      grid-template-columns: 1fr; /* 1 card per row for very small screens */
+      justify-content: center; /* Ensure the card is centered */
+    }
+  }
+  
+  
+  
+  .story-card {
+    flex: 1 1 250px; /* Allows the card to be flexible and responsive */
+    max-width: 250px; /* Maximum width to control the card size */
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    overflow: visible; /* Ensure the "Edit" button can overflow */
+  }
+  
+  
+
+/* Updated styles for the slide view modal */
+.slide-view-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.slide-wrapper {
+    position: relative;
+    max-width: 90%; /* Adjust as needed */
+    max-height: 90%; /* Adjust as needed */
+}
+
+.slide-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: for rounded corners */
+}
+
+.slide-text {
+    position: absolute;
+    bottom: 20px; /* Adjust the position as needed */
+    left: 20px; /* Adjust the position as needed */
+    right: 20px; /* Adjust the position as needed */
+    color: white;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text visibility */
+    padding: 10px; /* Padding around text */
+    border-radius: 10px; /* Optional: for rounded corners */
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+}
+.show-more-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
+
+
+}
+.show-more{
+  background-color: #FF7373;
+}
+
+.your-stories {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .stories-section {
+    margin-top: 40px; /* Space above each section */
+    padding: 20px; /* Padding for the section */
+  }
+
+  /* Center align the titles and subtitles */
+/* Center align the titles and subtitles */
+.category-section h2,
+.your-stories h2 {
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+/* Adjust the stories container to keep cards aligned */
+.stories-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the cards horizontally */
+    flex-wrap: wrap; /* Allow wrapping of cards */
+    gap: 15px; /* Add space between cards */
+}
+
+/* Optional: Center the loader and the no stories message */
+.loader-container,
+.your-stories > div {
+    text-align: center; /* Center the text */
+    margin: 20px; /* Add margin for spacing */
+}
+.edit-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-button-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+background-color: white;
+width: 75px;
+height: 30px;
+color: black;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+position: relative;
+bottom: 15px;
+border-radius: 20px;
+gap: 50x;
+cursor: pointer;
+padding: 5px;
+
+}
+
+.book-tag{
+  width: 100%;
+text-align: center;
+margin-top: 50px;
+margin-bottom: 50px;
+}

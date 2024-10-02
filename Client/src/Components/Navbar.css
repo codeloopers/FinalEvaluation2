@@ -1,0 +1,123 @@
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Button styling */
+.navbar-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 20px;
+}
+
+/* Register button */
+.btn.register {
+  background-color: #FF7373;
+  color: white;
+}
+
+/* Sign In button */
+.btn.signin {
+  background-color: #73ABFF;
+  color: white;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Profile Picture */
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Hamburger Button */
+.hamburger {
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: black;
+}
+
+/* Menu */
+.menu {
+  position: fixed;
+  top: 60px; /* Adjust based on navbar height */
+  right: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Menu Items */
+.menu-item {
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+}
+
+
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.fa-bookmark{
+  color: white;
+  margin-right: 4px;
+
+}
+.bookmark{
+  background-color: #FF7373;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  
+}
+
+.add-story{
+  background-color: #FF7373;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+.logout{
+  background-color: #FF7373;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+
+}

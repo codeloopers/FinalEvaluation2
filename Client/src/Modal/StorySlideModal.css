@@ -1,0 +1,238 @@
+/* Modal Background */
+.custom-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.custom-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    height: 80%;
+    background-color: transparent;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+/* Progress Bar */
+.custom-progress-bar {
+    display: flex;
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 10px);
+    z-index: 3;
+}
+
+.custom-progress-segment {
+    height: 4px;
+    flex-grow: 1;
+    background-color: #4a4a4a;
+    margin: 0 2px;
+}
+
+.custom-progress-segment.active {
+    background-color: white;
+}
+
+/* Header */
+.custom-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+    width: 100%;
+    background: transparent;
+}
+
+/* Close Button */
+.custom-close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* User Avatar */
+.custom-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #4a4a4a;
+}
+
+/* Main Content */
+.custom-main-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Slide Image */
+.custom-slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Gradient Overlay - Top */
+.gradient-overlay-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+    z-index: 2;
+}
+
+/* Gradient Overlay - Bottom */
+.gradient-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    z-index: 2;
+}
+
+/* Slide Text */
+.custom-slide-text {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    color: white;
+    z-index: 3;
+}
+
+/* Navigation Arrows */
+.custom-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    z-index: 4;
+}
+
+.custom-prev-arrow {
+    left: 20%;
+}
+
+.custom-next-arrow {
+    right: 20%;
+}
+
+/* Bookmark and Likes Button Container */
+.custom-buttons-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 5;
+}
+
+/* Bookmark Button */
+.custom-bookmark-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.custom-bookmark-button svg {
+    fill: white;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Likes Section */
+.custom-likes {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.custom-likes svg {
+    width: 40px;
+    height: 40px;
+    fill: white; /* Default color */
+    color: white;
+    cursor: pointer;
+}
+
+.custom-likes.liked svg {
+    fill: red !important; /* Fill red when liked */
+    color: red !important;
+}
+
+/* Like Count */
+.custom-likes span {
+    margin-left: 5px;
+    color: white;
+    font-size: 16px;
+}
+.bookmark-icon{
+    cursor: pointer;
+    
+}
+.custom-bookmark-button.bookmarked svg {
+    fill: #085CFF; 
+    color: #085CFF;/* Change to blue when bookmarked */
+}
+.add-slide-tab.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .custom-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .custom-close-button, .custom-share-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+  }
+  
+  .share-icon {
+    width: 24px; /* Adjust size as necessary */
+    height: 24px;
+    margin-right: 10px;
+  }
+  .download{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+  }

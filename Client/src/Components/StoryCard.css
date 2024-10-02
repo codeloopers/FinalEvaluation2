@@ -1,0 +1,60 @@
+.story-card {
+  width: 250px;
+  height: 450px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensures the card doesn't overflow */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative; /* Allow absolute positioning of content inside */
+}
+
+
+
+.story-card-image-wrapper {
+  width: 100%;
+  height: 100%; /* Ensures the video/image fills the card height */
+  overflow: hidden; /* Ensures the image/video doesn't overflow */
+}
+
+.story-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images cover the space */
+}
+
+.story-card-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures videos cover the space */
+}
+
+.story-card-content {
+  position: absolute; /* Allows for content to be placed over the image */
+  bottom: 20px; /* Aligns content to the bottom */
+  left: 0;
+  right: 0;
+  padding: 15px; /* Adds padding around the content */
+  color: white;
+  z-index: 3; /* Ensures the content stays above the image/video */
+  text-align: center; /* Centers the text */
+}
+
+.story-card h3 {
+  font-size: 18px;
+  margin: 0;
+  white-space: nowrap; /* Prevents the heading from wrapping */
+  overflow: hidden; /* Ensures no text overflow */
+  text-overflow: ellipsis; /* Adds '...' if the heading is too long */
+}
+
+.story-card p {
+  font-size: 14px;
+  margin: 5px 0 0; /* Adjusts spacing between heading and description */
+  color: #ddd;
+  white-space: nowrap; /* Prevents the description from wrapping */
+  overflow: hidden; /* Ensures no text overflow */
+  text-overflow: ellipsis; /* Adds '...' if the description is too long */
+}
+
