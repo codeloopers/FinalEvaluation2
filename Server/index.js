@@ -132,28 +132,33 @@ app.get('/user/stories', Auth, async (req, res) => {
 
 
 // Update a story
-app.patch('/stories/:storyId', async (req, res) => {
-    const { storyId } = req.params; // This is the storyId from the request
-    const { slides, category } = req.body; // Destructure both slides and category from request body
+app.put('/stories/:storyId', async (req, res) => {
+    const { storyId } = req.params; // Get the storyId from the request parameters
+    const { slides, category, likedBy, bookmark } = req.body; // Destructure necessary fields from the request body
 
-    // Validate that slides is an array
+    // Validate the incoming data
     if (!slides || !Array.isArray(slides)) {
         return res.status(400).json({ error: 'Slides data is required and should be an array.' });
+    }
+    
+    if (!category) {
+        return res.status(400).json({ error: 'Category is required.' });
     }
 
     console.log('Updating story:', storyId);
 
     try {
-        // Find the story by storyId or use _id if necessary
-        const updatedStory = await Story.findOneAndUpdate(
-            { _id: storyId }, // Use _id for the query
-            { slides, category }, // Include both slides and category in the update
-            { new: true } // Return the updated document
+        // Attempt to update the story using the PUT method
+        const updatedStory = await Story.findByIdAndUpdate(
+            storyId,
+            { slides, category, likedBy, bookmark }, // Update all fields provided
+            { new: true, runValidators: true } // Return the updated document and run validation
         );
 
         if (!updatedStory) {
             return res.status(404).json({ error: 'Story not found.' });
         }
+
         console.log('Updated story:', updatedStory);    
 
         // Emit the updated story to all connected clients
@@ -161,12 +166,14 @@ app.patch('/stories/:storyId', async (req, res) => {
         const stories = await Story.find({ userId }); // Fetch updated stories
         io.emit('user-stories', stories); // Emit updated stories
 
-        res.status(200).json({ message: 'Slides updated successfully!', story: updatedStory });
+        res.status(200).json({ message: 'Story updated successfully!', story: updatedStory });
     } catch (error) {
         console.error('Error updating story:', error);
         res.status(500).json({ error: 'Failed to update the story.' });
     }
 });
+
+
 
 
 
@@ -480,13 +487,13 @@ const server = app.listen(process.env.PORT, () => {
             console.log(`Server is up at port ${process.env.PORT} and Mongoose is connected`);
             io = socket(server); // Initialize Socket.IO after the server starts
 
-            io.on('connection', (socket) => {
-                console.log('New client connected:', socket.id);
+            // io.on('connection', (socket) => {
+            //     console.log('New client connected:', socket.id);
 
-                socket.on('disconnect', () => {
-                    console.log('Client disconnected:', socket.id);
-                });
-            });
+            //     socket.on('disconnect', () => {
+            //         console.log('Client disconnected:', socket.id);
+            //     });
+            // });
         })
         .catch((error) => console.error('Mongoose connection error:', error));
 });
