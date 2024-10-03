@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const socket = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
+const axios = require('axios')
 
 const UserSchema = require('../Server/Schema/UserSchema');
 const Story = require('../Server/Schema/Story');
@@ -18,6 +19,30 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
+
+const url = `https://finalevaluation2.onrender.com/test`; // Replace with your Render URL
+const interval = 30000; // Interval in milliseconds (30 seconds)
+
+const reloadWebsite = async (req,res) =>{
+  try{
+    await axios.get(url)
+    .then(response => {
+      console.log(`Reloaded at ${new Date().toISOString()}: Status Code ${response.status}`);
+    })
+    .catch(error => {
+      console.error(`Error reloading at ${new Date().toISOString()}:`, error.message);
+    });
+     }catch(e){
+      console.log(e)
+     }
+  
+}
+
+setInterval(reloadWebsite, interval);
+
+app.get('/test', (req, res) => {
+  res.json({ message: 'This is a test response' });
+});
 
 const isUserLoggedin = (req, res, next) => {
     if (req.user && req.user.id) {
