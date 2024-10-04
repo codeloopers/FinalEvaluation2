@@ -21,6 +21,7 @@ const EditSlideModal = ({ storyId, closeModal }) => {
   const [showErrorDialog, setShowErrorDialog] = useState(false); // State to show/hide the dialog
   const [loading, setLoading] = useState(false); // Loading state
   const [loaderVisible, setLoaderVisible] = useState(false); // Loader visibility
+  const [globalCategory, setGlobalCategory] = useState("");
 
   const handleInputChange = (index, field, value) => {
     const updatedSlides = [...slides];
@@ -56,13 +57,12 @@ const EditSlideModal = ({ storyId, closeModal }) => {
         if (response.ok) {
           // Check if data.slides exists and is an array before mapping
           if (Array.isArray(data.slides)) {
-            // Set fetched slides data and category for each slide
-            setSlides(
-              data.slides.map((slide) => ({
-                ...slide,
-                category: slide.category || "", // Ensure category is present
-              }))
-            );
+            const fetchedSlides = data.slides.map((slide) => ({
+              ...slide,
+              category: slide.category || data.category || "", // Use slide category or story category
+            }));
+            setSlides(fetchedSlides);
+            setGlobalCategory(data.category || fetchedSlides[0].category || "");
           } else {
             toast.error("No slides found in the story data");
             console.error("Invalid story data format:", data);
@@ -83,20 +83,12 @@ const EditSlideModal = ({ storyId, closeModal }) => {
 
 
   const handleCategoryChange = (value) => {
-    // Clone the slides array
+    setGlobalCategory(value);
     const updatedSlides = slides.map(slide => ({
       ...slide,
-      category: value // Update category for all slides
+      category: value
     }));
-  
-    // Update the global category
-    setCategory(value); // Set the global category to the selected value
-  
-    // Set the updated slides array
     setSlides(updatedSlides);
-  
-    // Log to verify changes
-    console.log(`Category updated for all slides to:`, value);
   };
   
   const handleCloseModal = () => {
@@ -186,7 +178,7 @@ const EditSlideModal = ({ storyId, closeModal }) => {
           category: slide.category,
         })),
         userId: userId,
-        category: category, // Attach the category here
+        category: globalCategory, // Attach the category here
       };
 
       // Console log the payload before sending
@@ -338,7 +330,7 @@ const EditSlideModal = ({ storyId, closeModal }) => {
               <div className="form-group">
   <label>Category:</label>
   <select
-    value={slides[activeSlide].category || ''} // Ensure this binds to the correct active slide's category
+    value={globalCategory} // Ensure this binds to the correct active slide's category
     className={errors[`category-${activeSlide}`] ? 'error-input' : ''}
     onChange={(e) => {
       const newCategory = e.target.value; // Get the new category value
