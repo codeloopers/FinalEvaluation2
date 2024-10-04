@@ -196,7 +196,7 @@ const EditSlideModal = ({ storyId, closeModal }) => {
         const response = await fetch(
           `https://finalevaluation2.onrender.com/stories/${storyId}`,
           {
-            method: "PATCH", // Change to PATCH method
+            method: "PUT", // Change to PATCH method
             headers: {
               "Content-Type": "application/json", // Ensure it's JSON
               Authorization: `Bearer ${token}`, // Add Bearer token here
