@@ -215,7 +215,6 @@ const EditSlideModal = ({ storyId, closeModal }) => {
             window.location.reload(); // Refresh the /dashboard page
           }, 1000); // Close modal after 2 seconds
         } else {
-          console.error("Error:", result.error);
           toast.error("Failed to update the story"); // Show error toast
         }
       } catch (error) {
