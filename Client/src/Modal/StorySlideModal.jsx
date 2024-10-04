@@ -9,6 +9,8 @@ import share from '../Images/Share.png';
 import io from 'socket.io-client';
 import LoginModal from './LoginModal';
 import download from '../Images/download.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const socket = io(process.env.REACT_APP_SOCKET_URL || 'https://finalevaluation2.onrender.com', {
   transports: ['websocket'],
@@ -98,26 +100,33 @@ const StorySlideModal = ({ story, closeModal }) => {
   };
 
   const handleBookmark = async () => {
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem('token');
     if (!token) {
-      setIsLoginModalOpen(true); 
+      setIsLoginModalOpen(true);
       return;
     }
+
     const userID = localStorage.getItem('userId');
+    const newBookmarkStatus = !bookmarked;
+
+    // Optimistically update UI
+    setBookmarked(newBookmarkStatus);
+    localStorage.setItem(`bookmarked_${userID}_${currentSlideData.slideId}`, newBookmarkStatus);
+
     try {
       await axios.post(
         `https://finalevaluation2.onrender.com/slides/${currentSlideData.slideId}/bookmark`,
         {},
-        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-
-      const newBookmarkStatus = !bookmarked;
-      setBookmarked(newBookmarkStatus);
-      localStorage.setItem(`bookmarked_${userID}_${currentSlideData.slideId}`, newBookmarkStatus);
 
       socket.emit('story-updated', { storyId: currentSlideData.slideId });
     } catch (error) {
       console.error('Error bookmarking slide:', error);
+      // Revert optimistic update
+      setBookmarked(!newBookmarkStatus);
+      localStorage.setItem(`bookmarked_${userID}_${currentSlideData.slideId}`, !newBookmarkStatus);
+      toast.error('Failed to update bookmark. Please try again.');
     }
   };
   const handleShare = () => {
@@ -136,6 +145,41 @@ const StorySlideModal = ({ story, closeModal }) => {
     // Update the URL without reloading the page
     window.history.pushState({}, '', `/?storyId=${storyId}`);
   };
+
+  const handleDownload = async () => {
+    const imageUrl = currentSlideData.image; // Get the image URL dynamically
+    
+    try {
+      // Fetch the image as a blob
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      
+      // Create a blob URL
+      const blobUrl = URL.createObjectURL(blob);
+      
+      // Create a temporary anchor tag
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'downloaded-image.jpg'; // The file name for download
+      
+      // Append the link to the document body
+      document.body.appendChild(link);
+      
+      // Simulate the download click
+      link.click();
+      
+      // Clean up
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobUrl);
+      toast.success('Image downloaded successfully!', {
+        autoClose: 3000, // Close automatically after 3 seconds
+      });
+    } catch (error) {
+      console.error('Error downloading image:', error);
+      // Handle the error (e.g., show a message to the user)
+    }
+  };
+  
 
   const handleLoginSuccess = async () => {
     setIsLoginModalOpen(false);
@@ -225,7 +269,9 @@ const StorySlideModal = ({ story, closeModal }) => {
             >
               <Bookmark />
             </button>
-            <img src={download} alt="download"  className='download'/>
+            <img src={download} alt="download"  className='download' 
+          onClick={handleDownload} 
+          aria-label="Download this image"/>
             <div
               className={`custom-likes ${liked ? 'liked' : ''}`}
               onClick={handleLike}
