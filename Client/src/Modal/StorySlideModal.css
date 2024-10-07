@@ -238,3 +238,64 @@
     cursor: pointer;
   }
   
+/* ... (previous styles remain the same) ... */
+
+/* Navigation Arrows */
+.custom-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    z-index: 4;
+}
+
+
+
+/* Clickable areas for navigation */
+.nav-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.nav-area-left {
+    left: 0;
+}
+
+.nav-area-right {
+    right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .custom-modal-content {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+    }
+
+    .custom-nav-arrow {
+        display: none; /* Hide arrows on smaller screens */
+    }
+
+    .custom-slide-text {
+        bottom: 80px;
+    }
+
+    .custom-buttons-container {
+        bottom: 30px;
+    }
+
+    .custom-slide-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* ... (rest of the styles remain the same) ... */

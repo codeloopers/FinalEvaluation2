@@ -146,6 +146,20 @@ const StorySlideModal = ({ story, closeModal }) => {
     window.history.pushState({}, '', `/?storyId=${storyId}`);
   };
 
+  const handleNavigation = (direction) => {
+    if (direction === 'next') {
+      if (story.slides && currentSlide < story.slides.length - 1) {
+        setCurrentSlide(currentSlide + 1);
+      } else {
+        closeModal();
+      }
+    } else if (direction === 'prev') {
+      if (currentSlide > 0) {
+        setCurrentSlide(currentSlide - 1);
+      }
+    }
+  };
+
   const handleDownload = async () => {
     const imageUrl = currentSlideData.image; // Get the image URL dynamically
     
@@ -240,6 +254,8 @@ const StorySlideModal = ({ story, closeModal }) => {
 </div>
 
         <div className="custom-main-content">
+        <div className="nav-area nav-area-left" onClick={() => handleNavigation('prev')}></div>
+        <div className="nav-area nav-area-right" onClick={() => handleNavigation('next')}></div>
           {isVideo ? (
             <video
               src={currentSlideData.image}
@@ -290,13 +306,13 @@ const StorySlideModal = ({ story, closeModal }) => {
         className="custom-nav-arrow custom-prev-arrow" 
         src={arrowleft}
         alt="Previous slide" 
-        onClick={handlePrev} 
+        onClick={() => handleNavigation('prev')}
       />
       <img 
         className="custom-nav-arrow custom-next-arrow" 
         src={arrowright}
         alt="Next slide" 
-        onClick={handleNext} 
+        onClick={() => handleNavigation('next')}
       />
 
       {isLoginModalOpen && (
