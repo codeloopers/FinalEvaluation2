@@ -193,4 +193,148 @@
     color: white;
     margin-top: 10px; /* Space between loader icon and text */
   }
+
+  /* Modal - Fullscreen */
+
+
+/* Modal - Responsive */
+@media (max-width: 600px) {
+    .modal {
+        max-width: 80%;
+        padding: 15px;
+        border-radius: 5px;
+    }
+    
+    .modal-content {
+      width: 100%;
+        padding: 20px;
+        display: flex;
+    flex-direction: row;
+    }
+    .close-iconModal {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      width: 20px;
+      height: 20px;
+  }
   
+  /* Slide Tabs - Responsive */
+  .slide-tabs {
+
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center; /* Centering tabs */
+  }
+  
+  .slide-tab, .add-slide-tab {
+      padding: 10px 20px;
+      box-shadow: 0px 4px 15px 0px #0000001A;
+      align-items: center;
+      border-radius: 5px;
+      cursor: pointer;
+      border-radius: 10px;
+      text-align: center;
+      width: 45%;
+  
+  }
+  
+  /* Slide Form - Responsive */
+  .slide-form {
+    width: 40%;
+      display: flex;
+      flex-direction: column;
+      
+  }
+  
+  /* Form Group - Responsive */
+  .form-group {
+      display: flex;
+      flex-direction: column; /* Stack labels and inputs */
+     
+  }
+  
+  
+  
+  /* Input Fields */
+  input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid black;
+      border-radius: 1px;
+  }
+  
+  /* Buttons - Responsive */
+  button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+  }
+  
+  /* Navigation Buttons - Responsive */
+  .navigation-buttons {
+   display: flex;
+   position: absolute;
+    margin-top: 20px;
+    bottom: 50px;
+    align-items: center;
+    justify-content: center;
+    max-width: 60%;
+  }
+  
+  
+  /* Responsive Text Input Error */
+  .error-input {
+      border: 1px solid red;
+      color: red;
+  }
+  
+  /* Loader */
+  .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+  }
+  
+  .loader {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .loading-text {
+      font-size: 24px;
+      color: white;
+      margin-top: 10px;
+  }
+  .form-group label {
+    margin-right: 10px; /* Space between label and input */
+    flex: 0 0 0px; /* Fixed width for labels (adjust as needed) */
+  }
+  .prev{
+    display: none;
+  }
+  .nxt{
+    display: none;
+  }
+  
+  
+
+}
+
+/* Close Button */
